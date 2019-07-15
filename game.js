@@ -1,5 +1,5 @@
 const game = {
-  title: 'Dungeon Scape',
+  title: 'Dungeon Escape',
   author: 'Inma',
   license: null,
   version: '1.0',
@@ -50,20 +50,25 @@ const game = {
   },
 
   reset: function() {
-  this.background = new Background (this.ctx, this.width, this.height, this.map)
+    this.background = new Background (this.ctx, this.width, this.height, this.map)
+    this.player = new Player (this.ctx, this.width, this.height, this.map)
   },
 
   start: function(){
     this.reset()
 
     this.clear()
-    this.drawAll()
+    setTimeout(() => {
+      
+      this.drawAll()
+    }, 1000);
   },
 
 
   drawAll: function() {
-    this.drawFirstLayer('#93734D', 0, 0, this.width, this.height)
-    this.background.draw()
+    this.drawFirstLayer('#93734D', 0, 0, this.width, this.height)  
+    this.background.draw() 
+    this.player.draw()
   },
 
   drawFirstLayer: function(color,x,y,w,h){
