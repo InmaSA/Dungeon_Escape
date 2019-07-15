@@ -26,9 +26,17 @@ class Background {
          let tile = this._map[r][c]
          let tileRow = Math.floor(tile / this._tilesPerRow)
          let tileColumn = Math.floor(tile % this._tilesPerRow)
-         this._ctx.drawImage(this._image,
-          (tileColumn * this._tileSize), (tileRow * this._tileSize), this._tileSize, this._tileSize, // indico desde donde quiero que coja la imagen de la tesela
-          (c * this._tileSize), (r * this._tileSize), this._tileSize, this._tileSize) // indico en qué lugar del canvas tiene que dibujarla
+         
+         this._ctx.drawImage(
+           this._image,
+          (tileColumn * this._tileSize), 
+          (tileRow * this._tileSize), 
+          this._tileSize, 
+          this._tileSize, // indico desde donde quiero que coja la imagen de la tesela
+          (c * this._tileSize), 
+          (r * this._tileSize), 
+          this._tileSize, 
+          this._tileSize) // indico en qué lugar del canvas tiene que dibujarla
         }
       }      
     }
