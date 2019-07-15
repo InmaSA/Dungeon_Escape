@@ -73,18 +73,20 @@ const game = {
 
 
   drawAll: function() {
-  //  this.drawFirstLayer('#93734D', 0, 0, this.width, this.height)  
     this.background.draw() 
+    this.drawDarkness('#171614', 0, 0, this.width, this.height)
     this.player.draw()
   },
 
-  // drawFirstLayer: function(color,x,y,w,h){
-  //   this.ctx.fillStyle = color
-  //   this.ctx.fillRect(x, y, w, h)
-  // },
+  drawDarkness: function(color,x,y,w,h){
+    this.ctx.fillStyle = color
+    this.ctx.fillRect(x, y, w, h)
+  },
 
   clear: function() {
     this.ctx.clearRect(0, 0, this.canvasDomObj.width, this.canvasDomObj.height)
-  }
+  },
+
+
 
 }

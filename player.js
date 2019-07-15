@@ -42,6 +42,12 @@ class Player {
       this._width,
       this._height
       )
+
+    this.drawLightSquare('rgba(250, 193, 133, 0.3)', 
+    this._posX - 50,
+    this._posY - 50,
+    132,
+    132)  
   }
 
   setListeners() {
@@ -79,8 +85,9 @@ class Player {
     }
   }
 
-  checkNextPos(y,x) {
-    this._map[this._currentY + y][this._currentX + x] != 38
+  drawLightSquare(color, x, y, w, h) {
+    this._ctx.fillStyle = color
+    this._ctx.fillRect(x, y, w, h)
   }
 
 }
