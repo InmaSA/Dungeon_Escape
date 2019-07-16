@@ -74,13 +74,7 @@ const game = {
 
   drawAll: function() {
     this.background.draw() 
-    this.drawDarkness('#171614', 0, 0, this.width, this.height)
     this.player.draw()
-  },
-
-  drawDarkness: function(color,x,y,w,h){
-    this.ctx.fillStyle = color
-    this.ctx.fillRect(x, y, w, h)
   },
 
   clear: function() {

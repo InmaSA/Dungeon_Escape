@@ -43,12 +43,37 @@ class Player {
       this._height
       )
 
-    this.drawLightSquare('rgba(250, 193, 133, 0.3)', 
+    this.drawLightsShadows('rgba(250, 193, 133, 0.3)', 
     this._posX - 50,
     this._posY - 50,
     132,
-    132)  
-  }
+    132)
+
+    this.drawLightsShadows('#171614',
+    0,
+    0,
+    this._posX + 82,
+    this._posY - 50)
+    
+    this.drawLightsShadows('#171614',
+    this._posX + 82,
+    0,
+    this._gameWidth,
+    this._gameHeight)
+
+    this.drawLightsShadows('#171614',
+    0,
+    this._posY - 50,
+    this._posX - 50,
+    this._gameHeight)
+     
+    this.drawLightsShadows('#171614',
+    this._posX - 50,
+    this._posY + this._height + 50,
+    this._posX + this._width + 50,
+    this._gameHeight)
+
+    }
 
   setListeners() {
     document.onkeydown = (e) => {
@@ -85,7 +110,7 @@ class Player {
     }
   }
 
-  drawLightSquare(color, x, y, w, h) {
+  drawLightsShadows(color, x, y, w, h) {
     this._ctx.fillStyle = color
     this._ctx.fillRect(x, y, w, h)
   }
