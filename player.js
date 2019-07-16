@@ -82,7 +82,6 @@ class Player {
           if((this._map[this._currentY - 1][this._currentX] != 38)) {
             this._currentY -= 1
             this._posY = this._currentY*(this._gameHeight/20)
-
           } 
           break;
 
@@ -90,7 +89,6 @@ class Player {
           if((this._map[this._currentY + 1][this._currentX] != 38)) {
             this._currentY += 1
             this._posY = this._currentY*(this._gameHeight/20)
-
           }
           break;
 
@@ -98,7 +96,6 @@ class Player {
           if ((this._map[this._currentY][this._currentX - 1] != 38)) {
             this._currentX -= 1
             this._posX = this._currentX*(this._gameWidth/32)
-
           }
 
           break;
@@ -107,7 +104,6 @@ class Player {
           if (this._map[this._currentY][this._currentX + 1] != 38) {
             this._currentX += 1
             this._posX = this._currentX*(this._gameWidth/32)
-
           }         
           break;    
       }
@@ -119,7 +115,15 @@ class Player {
     this._ctx.fillRect(x, y, w, h)
   }
 
+  checkTreasures() {
+    if (this._map[this._currentY][this._currentX] == 79) {
+      this._ctx.font = "20px Artifika";
+      this._ctx.fillStyle = "red";
+      this._ctx.fillText('You have found a chest, do you want to open it? Y/N', 70, 70)
 
+
+    }
+  }
 }
 
 

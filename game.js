@@ -79,6 +79,7 @@ const game = {
       if(this.timeToDie >= 180) this.gameOver()
       
       this.drawAll()
+      this.player.checkTreasures()
 
     }, 1000/60);  
   },
