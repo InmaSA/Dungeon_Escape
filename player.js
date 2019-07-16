@@ -144,15 +144,21 @@ class Player {
   foundChest() {
     this._ctx.font = "20px Artifika";
     this._ctx.fillStyle = "red";
-    console.log(this._width - 200, this._height - 40)
     this._ctx.fillText('You get 10 coins!!', 70, 100)
   }
 
   leaveTheCoins() {
     this._ctx.font = "20px Artifika";
     this._ctx.fillStyle = "red";
-    console.log(this._width - 200, this._height - 40)
     this._ctx.fillText('You decide to open it later', 70, 100)
+  }
+
+  youWon() {
+    if (this._map[this._currentY][this._currentX] == 113 || this._map[this._currentY][this._currentX] == 129) {
+      this._ctx.font = "80px Artifika";
+      this._ctx.fillStyle = "#E89D12";
+      this._ctx.fillText('YOU DID IT!!', this._gameWidth/2 - 170, this._gameHeight/2 - 100)
+    }
   }
 }
 

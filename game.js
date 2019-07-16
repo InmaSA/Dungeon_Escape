@@ -83,6 +83,7 @@ const game = {
       
       this.drawAll()
       this.player.checkTreasures()
+      this.player.youWon()
 
     }, 1000/60);  
   },
