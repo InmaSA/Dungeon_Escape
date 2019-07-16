@@ -38,11 +38,14 @@ const game = {
     upArrow: 38,
     downArrow: 40,
     leftArrow: 37,
-    rightArrow: 39
+    rightArrow: 39,
+    yes: 89,
+    no: 78
   },
   framesCounter: 0,
   currentTime: 180,
   timeToDie: 0,
+
 
   init: function (id) {
     this.canvasDomObj = document.getElementById(id)
@@ -88,6 +91,9 @@ const game = {
     this.background.draw() 
     this.player.draw()
     this.counter.drawCounterDown()
+
+   if(this.player._findCoins == true) {this.player.foundChest() }
+   if(this.player._noWantCoins == true) {this.player.leaveTheCoins() }
   },
 
   clear: function() {
@@ -97,6 +103,7 @@ const game = {
   gameOver: function() {              
     clearInterval(this.interval)
   }
+
 
 
 

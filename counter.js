@@ -11,21 +11,19 @@ class Counter {
 
   }
     
-   drawCounterDown() {
-    this._ctx.font = "16px Artifika";
+  drawCounterDown() {
+    this._ctx.font = "20px Artifika";
     this._ctx.fillStyle = "red";
-    this._ctx.fillText("Time left: "+this._currentMinutes+" min "+this._currentSeconds+" sec", this._width - 200, this._height - 20) 
-   } 
-  
+    this._ctx.fillText("Time left   "+this._currentMinutes+":"+this._currentSeconds, this._width - 200, this._height - 20) 
+  } 
 
-
-countDown(){
+  countDown(){
     this._currentTime -= 1
 
     this._currentMinutes = Math.floor(this._currentTime/60)
     this._currentSeconds = this._currentTime % 60 
 
-}
+  }
 
 
 }

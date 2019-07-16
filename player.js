@@ -27,7 +27,10 @@ class Player {
     this._image.yFrames = 4
     this._image.xFramesIndex = 0
     this._image.yFramesIndex = 0
-    
+
+    this._findCoins = false
+    this._noWantCoins = false
+
     this.setListeners()
   }
 
@@ -73,6 +76,8 @@ class Player {
     this._posX + this._width + 82,
     this._gameHeight)
 
+
+
     }
 
   setListeners() {
@@ -83,30 +88,43 @@ class Player {
             this._currentY -= 1
             this._posY = this._currentY*(this._gameHeight/20)
           } 
-          break;
+          break
 
         case this._keys.downArrow:
           if((this._map[this._currentY + 1][this._currentX] != 38)) {
             this._currentY += 1
             this._posY = this._currentY*(this._gameHeight/20)
           }
-          break;
+          break
 
         case this._keys.leftArrow:
           if ((this._map[this._currentY][this._currentX - 1] != 38)) {
             this._currentX -= 1
             this._posX = this._currentX*(this._gameWidth/32)
           }
-
-          break;
+          break
 
         case this._keys.rightArrow:
           if (this._map[this._currentY][this._currentX + 1] != 38) {
             this._currentX += 1
             this._posX = this._currentX*(this._gameWidth/32)
           }         
-          break;    
-      }
+          break
+
+        case this._keys.yes:
+            this._findCoins = true
+            setTimeout(() => {
+              this._findCoins = false
+            }, 2000);
+          break
+
+        case this._keys.no:    
+            this._noWantCoins = true
+            setTimeout(() => {
+              this._noWantCoins = false
+            }, 2000);
+          break   
+        }
     }
   }
 
@@ -120,11 +138,26 @@ class Player {
       this._ctx.font = "20px Artifika";
       this._ctx.fillStyle = "red";
       this._ctx.fillText('You have found a chest, do you want to open it? Y/N', 70, 70)
-
-
     }
   }
+
+  foundChest() {
+    this._ctx.font = "20px Artifika";
+    this._ctx.fillStyle = "red";
+    console.log(this._width - 200, this._height - 40)
+    this._ctx.fillText('You get 10 coins!!', 70, 100)
+  }
+
+  leaveTheCoins() {
+    this._ctx.font = "20px Artifika";
+    this._ctx.fillStyle = "red";
+    console.log(this._width - 200, this._height - 40)
+    this._ctx.fillText('You decide to open it later', 70, 100)
+  }
 }
+
+
+
 
 
 
