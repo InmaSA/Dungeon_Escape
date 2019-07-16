@@ -40,6 +40,9 @@ const game = {
     leftArrow: 37,
     rightArrow: 39
   },
+  framesCounter: 0,
+  currentTime: 180,
+  timeToDie: 0,
 
   init: function (id) {
     this.canvasDomObj = document.getElementById(id)
@@ -59,27 +62,40 @@ const game = {
   reset: function() {
     this.background = new Background (this.ctx, this.width, this.height, this.map)
     this.player = new Player (this.ctx, this.width, this.height, this.map, this.keys)
+    this.counter = new Counter (this.ctx, this.width, this.height, this.map, this.currentTime)
   },
 
   start: function(){
     this.reset()
 
     this.clear()
-    setInterval(() => {
+    this.interval = setInterval(() => {
+      this.framesCounter ++
+      if (this.framesCounter % 60 == 0) {
+        this.counter.countDown()
+        this.timeToDie +=1}
+
+      if(this.framesCounter == 1019) this.framesCounter = 0 
+      if(this.timeToDie >= 180) this.gameOver()
       
       this.drawAll()
+
     }, 1000/60);  
   },
-
 
   drawAll: function() {
     this.background.draw() 
     this.player.draw()
+    this.counter.drawCounterDown()
   },
 
   clear: function() {
     this.ctx.clearRect(0, 0, this.canvasDomObj.width, this.canvasDomObj.height)
   },
+
+  gameOver: function() {              
+    clearInterval(this.interval)
+  }
 
 
 

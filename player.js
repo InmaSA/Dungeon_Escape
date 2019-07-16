@@ -65,12 +65,12 @@ class Player {
     0,
     this._posY - 50,
     this._posX - 50,
-    this._gameHeight)
+    this._gameHeight + 32)
      
     this.drawLightsShadows('#171614',
     this._posX - 50,
     this._posY + this._height + 50,
-    this._posX + this._width + 50,
+    this._posX + this._width + 82,
     this._gameHeight)
 
     }
@@ -82,6 +82,7 @@ class Player {
           if((this._map[this._currentY - 1][this._currentX] != 38)) {
             this._currentY -= 1
             this._posY = this._currentY*(this._gameHeight/20)
+
           } 
           break;
 
@@ -89,6 +90,7 @@ class Player {
           if((this._map[this._currentY + 1][this._currentX] != 38)) {
             this._currentY += 1
             this._posY = this._currentY*(this._gameHeight/20)
+
           }
           break;
 
@@ -96,6 +98,7 @@ class Player {
           if ((this._map[this._currentY][this._currentX - 1] != 38)) {
             this._currentX -= 1
             this._posX = this._currentX*(this._gameWidth/32)
+
           }
 
           break;
@@ -104,6 +107,7 @@ class Player {
           if (this._map[this._currentY][this._currentX + 1] != 38) {
             this._currentX += 1
             this._posX = this._currentX*(this._gameWidth/32)
+
           }         
           break;    
       }
@@ -114,6 +118,7 @@ class Player {
     this._ctx.fillStyle = color
     this._ctx.fillRect(x, y, w, h)
   }
+
 
 }
 
