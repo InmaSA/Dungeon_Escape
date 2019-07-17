@@ -7,7 +7,7 @@ window.onload = function() {
   console.log(history)
 
   document.getElementById("start-button").onclick = function() {
-    document.getElementById('dungeon-music').play()
+    document.getElementsByClassName('dungeon-music')[0].play()
     let introSection = document.getElementById('intro')
     introSection.setAttribute('class', 'disappear')
     game.init('canvas');

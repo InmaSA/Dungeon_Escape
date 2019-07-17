@@ -136,6 +136,7 @@ const game = {
 
 
             this.showTrapMessage = true
+            
               this.ctx.font = "20px Artifika";
               this.ctx.fillStyle = "red";
               this.ctx.fillText('You got lost and and start again', 70, 70)
@@ -145,8 +146,6 @@ const game = {
               }, 3000);
     
     }  
+  }
 }
 
-
-
-}

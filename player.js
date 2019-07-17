@@ -167,6 +167,10 @@ class Player {
   youWon() {
     if (this._map[this._currentY][this._currentX] == 113 || this._map[this._currentY][this._currentX] == 129) {
 
+      document.getElementById('win').play() 
+      document.getElementsByClassName('dungeon-music')[0].pause()
+     
+
       this._endGame = true
 
       setTimeout(() => {
