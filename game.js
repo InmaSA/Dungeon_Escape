@@ -10,7 +10,6 @@ const game = {
   height: undefined,
   canvasDiv: undefined,
   fillStyle: undefined,
-  showTrapMessage: false,
 
   map: [
     [38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38],
@@ -134,18 +133,9 @@ const game = {
             this.player._posX = this.player._posX0
             this.player._posY = this.player._posY0
 
-
-            this.showTrapMessage = true
-            
-              this.ctx.font = "20px Artifika";
-              this.ctx.fillStyle = "red";
-              this.ctx.fillText('You got lost and and start again', 70, 70)
-
-              setTimeout(() => {
-                this.showTrapMessage = false
-              }, 3000);
+            document.getElementById('trap').play()
     
-    }  
+        }  
   }
 }
 

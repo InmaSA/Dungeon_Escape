@@ -145,9 +145,6 @@ class Player {
       this._ctx.font = "20px Artifika";
       this._ctx.fillStyle = "red";
       this._ctx.fillText('You have found a chest, do you want to open it? Y/N', 70, 70)
-      setTimeout(() => {
-        this._map[this._currentY][this._currentX] = 153
-      }, 3000); 
     }
   }
 
@@ -156,6 +153,9 @@ class Player {
     this._ctx.fillStyle = "red";
     this._ctx.fillText('You get 10 coins!!', 70, 100)
     document.getElementById('coins').play()
+    setTimeout(() => {
+      this._map[this._currentY][this._currentX] = 153
+    }, 1000); 
   }
 
   leaveTheCoins() {
