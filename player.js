@@ -1,11 +1,12 @@
 class Player {
-  constructor(ctx, width, height, map, keys) {
+  constructor(ctx, width, height, map, keys, interval) {
 
     this._ctx = ctx
     this._gameWidth = width
     this._gameHeight = height
     this._map = map
     this._keys = keys
+    this._interval = interval
 
     this._image = new Image()
     this._image.src = "images/holder_sprite_2.png"
@@ -31,10 +32,13 @@ class Player {
     this._findCoins = false
     this._noWantCoins = false
 
+    this._endGame = false
+
     this.setListeners()
   }
 
   draw() {
+
     this._ctx.drawImage(this._image, 
       this._image.xFramesIndex * Math.floor(this._image.width/this._image.xFrames), // punto en x donde empezar a recortar
       this._image.yFramesIndex * Math.floor(this._image.height/this._image.yFrames), // punto en y donde empezar a recortar
@@ -75,13 +79,11 @@ class Player {
     this._posY + this._height + 50,
     this._posX + this._width + 82,
     this._gameHeight)
-
-
-
     }
 
   setListeners() {
     document.onkeydown = (e) => {
+ 
       switch (e.keyCode) {
         case this._keys.upArrow:
           if((this._map[this._currentY - 1][this._currentX] != 38)) {
@@ -116,7 +118,7 @@ class Player {
             this._findCoins = true
             setTimeout(() => {
               this._findCoins = false
-            }, 2000);
+            }, 1500);
           }
           break
 
@@ -125,10 +127,11 @@ class Player {
             this._noWantCoins = true
             setTimeout(() => {
               this._noWantCoins = false
-            }, 2000);
+            }, 1500);
           }  
           break   
         }
+
     }
   }
 
@@ -142,6 +145,7 @@ class Player {
       this._ctx.font = "20px Artifika";
       this._ctx.fillStyle = "red";
       this._ctx.fillText('You have found a chest, do you want to open it? Y/N', 70, 70)
+
     }
   }
 
@@ -149,6 +153,7 @@ class Player {
     this._ctx.font = "20px Artifika";
     this._ctx.fillStyle = "red";
     this._ctx.fillText('You get 10 coins!!', 70, 100)
+    document.getElementById('coins').play()
   }
 
   leaveTheCoins() {
@@ -159,12 +164,22 @@ class Player {
 
   youWon() {
     if (this._map[this._currentY][this._currentX] == 113 || this._map[this._currentY][this._currentX] == 129) {
-      this._ctx.font = "80px Artifika";
-      this._ctx.fillStyle = "#E89D12";
-      this._ctx.fillText('YOU DID IT!!', this._gameWidth/2 - 170, this._gameHeight/2 - 100)
+
+      this._endGame = true
+
+      setTimeout(() => {
+        this._ctx.font = "80px Artifika";
+            this._ctx.fillStyle = "#E89D12";
+            this._ctx.fillText('YOU DID IT!!', this._gameWidth/2 - 170, this._gameHeight/2 - 100)
+      }, 3000); 
+      
     }
   }
+
+
+
 }
+
 
 
 

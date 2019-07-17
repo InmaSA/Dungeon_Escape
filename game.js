@@ -10,6 +10,7 @@ const game = {
   height: undefined,
   canvasDiv: undefined,
   fillStyle: undefined,
+  showTrapMessage: false,
 
   map: [
     [38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38],
@@ -43,7 +44,7 @@ const game = {
     no: 78
   },
   framesCounter: 0,
-  currentTime: 120,
+  currentTime: 60, //120
   timeToDie: 0,
 
 
@@ -64,7 +65,7 @@ const game = {
 
   reset: function() {
     this.background = new Background (this.ctx, this.width, this.height, this.map)
-    this.player = new Player (this.ctx, this.width, this.height, this.map, this.keys)
+    this.player = new Player (this.ctx, this.width, this.height, this.map, this.keys, this.interval)
     this.counter = new Counter (this.ctx, this.width, this.height, this.map, this.currentTime)
   },
 
@@ -77,13 +78,21 @@ const game = {
       if (this.framesCounter % 60 == 0) {
         this.counter.countDown()
         this.timeToDie +=1}
-
-      if(this.framesCounter == 1019) this.framesCounter = 0 
-      if(this.timeToDie >= 120) this.gameOver()
-      
-      this.drawAll()
+        
+        if(this.framesCounter == 1019) this.framesCounter = 0 
+        
+        this.drawAll()
+        this.setTraps()
+      if(this.timeToDie >= 60) { //120
+        this.gameOver() 
+        clearInterval(this.interval)
+      }  
       this.player.checkTreasures()
+
+
+      
       this.player.youWon()
+      if(this.player._endGame) clearInterval(this.interval)
 
     }, 1000/60);  
   },
@@ -91,20 +100,52 @@ const game = {
   drawAll: function() {
     this.background.draw() 
     this.player.draw()
-    this.counter.drawCounterDown()
 
-   if(this.player._findCoins == true) {this.player.foundChest() }
-   if(this.player._noWantCoins == true) {this.player.leaveTheCoins() }
+    if (this.player._endGame == false) {this.counter.drawCounterDown() }
+    if (this.player._findCoins == true) {this.player.foundChest() }
+    if (this.player._noWantCoins == true) {this.player.leaveTheCoins() }
   },
 
   clear: function() {
     this.ctx.clearRect(0, 0, this.canvasDomObj.width, this.canvasDomObj.height)
   },
 
-  gameOver: function() {              
-    clearInterval(this.interval)
-  }
+  gameOver: function() {   
+      
+      let gameOverImage = new Image ()
+      gameOverImage.src = 'images/PdOiQPO-game-over-wallpaper.jpg'
+      gameOverImage.onload = () => this.ctx.drawImage(gameOverImage, 0,0, this.width, this.height)
+  },
 
+  setTraps() {
+
+    if ((this.player._currentX == 18 && this.player._currentY == 25) ||
+        (this.player._currentX == 9 && this.player._currentY == 13) ||
+        (this.player._currentX == 21 && this.player._currentY == 1) ||
+        (this.player._currentX == 14 && this.player._currentY == 6) ||
+        (this.player._currentX == 3 && this.player._currentY == 8))
+          {
+            this.player._currentX = 1
+            this.player._currentY = 18
+
+            this.player._posX0 = this.player._currentX*(this.width/32)
+            this.player._posY0 = this.player._currentY*(this.height/20)
+        
+            this.player._posX = this.player._posX0
+            this.player._posY = this.player._posY0
+
+
+            this.showTrapMessage = true
+              this.ctx.font = "20px Artifika";
+              this.ctx.fillStyle = "red";
+              this.ctx.fillText('You got lost and and start again', 70, 70)
+
+              setTimeout(() => {
+                this.showTrapMessage = false
+              }, 3000);
+    
+    }  
+}
 
 
 
