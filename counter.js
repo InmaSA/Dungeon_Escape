@@ -6,8 +6,8 @@ class Counter {
     this._map = map
     this._currentTime = currentTime
 
-    this._currentMinutes = 0
-    this._currentSeconds =0
+    this._currentMinutes = '02'
+    this._currentSeconds = '00'
 
   }
     
@@ -21,9 +21,19 @@ class Counter {
     this._currentTime -= 1
 
     this._currentMinutes = Math.floor(this._currentTime/60)
-    this._currentSeconds = this._currentTime % 60 
+    this._currentMinutes = this._currentMinutes.toString()
+    if(this._currentMinutes.length == 1) {
+      this._currentMinutes = '0' + this._currentMinutes
+    }
+
+    this._currentSeconds = this._currentTime % 60
+    this._currentSeconds = this._currentSeconds.toString()
+    if(this._currentSeconds.length == 1) {
+      this._currentSeconds = '0' + this._currentSeconds
+    }
 
   }
 
 
 }
+

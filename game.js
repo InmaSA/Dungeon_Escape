@@ -43,7 +43,7 @@ const game = {
     no: 78
   },
   framesCounter: 0,
-  currentTime: 180,
+  currentTime: 120,
   timeToDie: 0,
 
 
@@ -79,7 +79,7 @@ const game = {
         this.timeToDie +=1}
 
       if(this.framesCounter == 1019) this.framesCounter = 0 
-      if(this.timeToDie >= 180) this.gameOver()
+      if(this.timeToDie >= 120) this.gameOver()
       
       this.drawAll()
       this.player.checkTreasures()

@@ -112,17 +112,21 @@ class Player {
           break
 
         case this._keys.yes:
+          if (this._map[this._currentY][this._currentX] == 79) {
             this._findCoins = true
             setTimeout(() => {
               this._findCoins = false
             }, 2000);
+          }
           break
 
         case this._keys.no:    
+          if (this._map[this._currentY][this._currentX] == 79) {
             this._noWantCoins = true
             setTimeout(() => {
               this._noWantCoins = false
             }, 2000);
+          }  
           break   
         }
     }
