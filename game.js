@@ -124,6 +124,8 @@ const game = {
         (this.player._currentX == 14 && this.player._currentY == 6) ||
         (this.player._currentX == 3 && this.player._currentY == 8))
           {
+            this.map[this.player._currentY][this.player._currentX] = 0
+
             this.player._currentX = 1
             this.player._currentY = 18
 
@@ -134,6 +136,9 @@ const game = {
             this.player._posY = this.player._posY0
 
             document.getElementById('trap').play()
+
+
+              
     
         }  
   }

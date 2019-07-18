@@ -10,6 +10,14 @@ body h1 {
   color: rgb(63, 9, 9);
   font-size: 4em;
   text-transform: uppercase;
+
+    
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0 auto;
+  animation: 
+    typing 3.5s steps(40, end),
+    blink-caret .75s step-end infinite;
 }
 
 body button {
@@ -42,11 +50,17 @@ body button {
   text-align: justify;
   letter-spacing: 4px;
   line-height: 1.5em;
-  
 }
 
 
 .disappear {
   display: none;
 }
+
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
 
