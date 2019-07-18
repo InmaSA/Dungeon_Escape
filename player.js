@@ -14,8 +14,11 @@ class Player {
     this._width = 32
     this._height = 32
 
-    this._currentX= 1 // se corresponden con map[this._currentY][this._currentX]
-    this._currentY= 18
+    this._currentX = 0
+    this._currentY = 0
+
+    this.findIndex()
+    
     this._currentPosition = this._map[this._currentY][this._currentX]
   
     this._posX0 = this._currentX*(this._gameWidth/32)
@@ -32,9 +35,21 @@ class Player {
     this._findCoins = false
     this._noWantCoins = false
 
-    this._endGame = false
+    // this._endGame = false
+
 
     this.setListeners()
+    
+  }
+
+  findIndex() {
+    this._map.forEach((row,rowIdx) => {
+      this._map[rowIdx][row.indexOf(0)] 
+      if (row.indexOf(0) > 0) {
+        this._currentY = rowIdx
+        this._currentX = row.indexOf(0)
+      }
+    })
   }
 
   draw() {
@@ -164,23 +179,23 @@ class Player {
     this._ctx.fillText('You decide to open it later', 70, 100)
   }
 
-  youWon() {
-    if (this._map[this._currentY][this._currentX] == 113 || this._map[this._currentY][this._currentX] == 129) {
+  // youWon() {
+  //   if (this._map[this._currentY][this._currentX] == 113 || this._map[this._currentY][this._currentX] == 129) {
 
-      document.getElementById('win').play() 
-      document.getElementsByClassName('dungeon-music')[0].pause()
+  //     document.getElementById('win').play() 
+  //     document.getElementsByClassName('dungeon-music')[0].pause()
      
 
-      this._endGame = true
+  //     this._endGame = true
 
-      setTimeout(() => {
-        this._ctx.font = "80px Artifika";
-            this._ctx.fillStyle = "#E89D12";
-            this._ctx.fillText('YOU DID IT!!', this._gameWidth/2 - 170, this._gameHeight/2 - 100)
-      }, 3000); 
+  //     setTimeout(() => {
+  //       this._ctx.font = "80px Artifika";
+  //           this._ctx.fillStyle = "#E89D12";
+  //           this._ctx.fillText('YOU DID IT!!', this._gameWidth/2 - 170, this._gameHeight/2 - 100)
+  //     }, 3000); 
       
-    }
-  }
+  //   }
+  // }
 
 
 
