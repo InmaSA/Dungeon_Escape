@@ -35,11 +35,7 @@ class Player {
     this._findCoins = false
     this._noWantCoins = false
 
-    // this._endGame = false
-
-
     this.setListeners()
-    
   }
 
   findIndex() {
@@ -178,26 +174,6 @@ class Player {
     this._ctx.fillStyle = "red";
     this._ctx.fillText('You decide to open it later', 70, 100)
   }
-
-  // youWon() {
-  //   if (this._map[this._currentY][this._currentX] == 113 || this._map[this._currentY][this._currentX] == 129) {
-
-  //     document.getElementById('win').play() 
-  //     document.getElementsByClassName('dungeon-music')[0].pause()
-     
-
-  //     this._endGame = true
-
-  //     setTimeout(() => {
-  //       this._ctx.font = "80px Artifika";
-  //           this._ctx.fillStyle = "#E89D12";
-  //           this._ctx.fillText('YOU DID IT!!', this._gameWidth/2 - 170, this._gameHeight/2 - 100)
-  //     }, 3000); 
-      
-  //   }
-  // }
-
-
 
 }
 

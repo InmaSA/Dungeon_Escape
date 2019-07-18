@@ -66,7 +66,7 @@ const game = {
     no: 78
   },
   framesCounter: 0,
-  currentTime: 60, //120
+  currentTime: 120, 
   timeToDie: 0,
   levelCounter: 1,
   endGame: false,
@@ -98,7 +98,6 @@ const game = {
 
     this.reset(this.map)
    
-    this.clear()
     this.interval = setInterval(() => {
       this.framesCounter ++
       if (this.framesCounter % 60 == 0) {
@@ -107,26 +106,25 @@ const game = {
         
         if(this.framesCounter == 1019) this.framesCounter = 0 
         
+        this.clear()
         this.drawAll()
+
         this.setTraps()
-      if(this.timeToDie >= 60) { //120
+      if(this.timeToDie >= 120) { 
         this.gameOver() 
         clearInterval(this.interval)
       }  
       this.player.checkTreasures()
-
-
+      
+      
       this.checkLevel()
 
-//       if(this.levelCounter == 2) {
-//         this.reset(this.map2)
-// //        clearInterval(this.interval)  // Si lo pongo el player se queda donde está, se para el tiempo y no se ejectuta youWon
-//       }                                 // Si no lo pongo se instancia todo pero youWon se ejecuta
       
-  
+      
       if(this.endGame) clearInterval(this.interval)
-
+      
     }, 1000/60);  
+
   },
 
   drawAll: function() {
@@ -171,18 +169,19 @@ const game = {
   },
 
   checkLevel () {
-    if (this.map[this.player._currentY][this.player._currentX] == 113 || this.map[this.player._currentY][this.player._currentX] == 129) {
-
-      if (this.levelCounter === 1) {
+    if ((this.map[this.player._currentY][this.player._currentX] == 113 || this.map[this.player._currentY][this.player._currentX] == 129) && this.levelCounter === 1) 
+       {
         this.levelCounter ++
+       
+        this.reset(this.map2)
+        this.currentTime = 60
+        this.timeToDie = 0
 
-
-      } else {
+      } else if ((this.map2[this.player._currentY][this.player._currentX] == 113 || this.map2[this.player._currentY][this.player._currentX] == 129) && this.levelCounter === 2) {
         this.youWon()
-      
-      }
-    } console.log(this.levelCounter)
-  },
+        } 
+      },
+  
 
   youWon() {
     document.getElementById('win').play() 

@@ -6,8 +6,8 @@ class Counter {
     this._map = map
     this._currentTime = currentTime
 
-    this._currentMinutes = '01' //'02'
-    this._currentSeconds =  '00' //'00'
+    this._currentMinutes = '02'
+    this._currentSeconds =  '00'
 
   }
     
