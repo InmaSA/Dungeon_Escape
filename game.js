@@ -112,7 +112,8 @@ const game = {
 
       if (this.levelCounter == 1) {
         this.setTraps(this.map)
-      } else {this.setTraps(this.map2)}
+      } else {
+        this.getPoisoned(this.map2)}
         
         
       if(this.timeToDie >= 120) { 
@@ -156,10 +157,8 @@ const game = {
  
     if (whatMap[this.player._currentY][this.player._currentX] == 152)
       {
+        
         whatMap[this.player._currentY][this.player._currentX] = 0
-
-        this.player._currentX = 0
-        this.player._currentY = 0
 
         this.player.findIndex()
 
@@ -171,6 +170,18 @@ const game = {
 
         document.getElementById('trap').play()          
       }  
+  },
+
+  getPoisoned(whatMap) {
+    if (whatMap[this.player._currentY][this.player._currentX] == 152) {
+      this.ctx.font = "20px Artifika";
+      this.ctx.fillStyle = "red";
+      this.ctx.fillText('You get poisoned!!', 70, 100)
+      document.getElementById('trap').play()
+      setTimeout(() => {
+        whatMap[this.player._currentY][this.player._currentX] = 153
+      }, 1000); 
+    } 
   },
 
   checkLevel () {
