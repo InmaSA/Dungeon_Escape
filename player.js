@@ -1,12 +1,11 @@
 class Player {
-  constructor(ctx, width, height, map, keys, interval) {
+  constructor(ctx, width, height, map, keys) {
 
     this._ctx = ctx
     this._gameWidth = width
     this._gameHeight = height
     this._map = map
     this._keys = keys
-    this._interval = interval
 
     this._image = new Image()
     this._image.src = "images/holder_sprite_2.png"
@@ -174,6 +173,7 @@ class Player {
     this._ctx.fillStyle = "red";
     this._ctx.fillText('You decide to open it later', 70, 100)
   }
+
 
 }
 

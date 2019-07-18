@@ -90,7 +90,7 @@ const game = {
 
   reset: function(whatMap) {
     this.background = new Background (this.ctx, this.width, this.height, whatMap)
-    this.player = new Player (this.ctx, this.width, this.height, whatMap, this.keys, this.interval)
+    this.player = new Player (this.ctx, this.width, this.height, whatMap, this.keys)
     this.counter = new Counter (this.ctx, this.width, this.height, whatMap, this.currentTime)
   },
 
@@ -113,7 +113,8 @@ const game = {
       if (this.levelCounter == 1) {
         this.setTraps(this.map)
       } else {
-        this.getPoisoned(this.map2)}
+        this.getPoisoned(this.map2)   
+        }
         
         
       if(this.timeToDie >= 120) { 
@@ -174,6 +175,7 @@ const game = {
 
   getPoisoned(whatMap) {
     if (whatMap[this.player._currentY][this.player._currentX] == 152) {
+
       this.ctx.font = "20px Artifika";
       this.ctx.fillStyle = "red";
       this.ctx.fillText('You get poisoned!!', 70, 100)
@@ -183,12 +185,14 @@ const game = {
       }, 1000); 
     } 
   },
+  
 
   checkLevel () {
     if ((this.map[this.player._currentY][this.player._currentX] == 113 || this.map[this.player._currentY][this.player._currentX] == 129) && this.levelCounter === 1) 
        {
         this.levelCounter ++
        
+        document.getElementById('levelUp').play()
         this.reset(this.map2)
         this.currentTime = 60
         this.timeToDie = 0
