@@ -70,8 +70,6 @@ const game = {
   timeToDie: 0,
   levelCounter: 1,
   endGame: false,
-  currentInguries:4,
-
 
 
   init: function (id) {
