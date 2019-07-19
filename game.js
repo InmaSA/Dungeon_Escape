@@ -70,6 +70,7 @@ const game = {
   timeToDie: 0,
   levelCounter: 1,
   endGame: false,
+  currentInguries:4,
 
 
 
@@ -113,14 +114,21 @@ const game = {
       if (this.levelCounter == 1) {
         this.setTraps(this.map)
       } else {
-        this.getPoisoned(this.map2)   
+        this.setTraps(this.map2)   
         }
-        
+  
         
       if(this.timeToDie >= 120) { 
         this.gameOver() 
         clearInterval(this.interval)
       }  
+      
+      if(this.currentInguries <= 0) { 
+        console.log('me envenené')
+        this.gameOver() 
+        clearInterval(this.interval)
+      } 
+
       this.player.checkTreasures()
       
       
@@ -159,7 +167,7 @@ const game = {
     if (whatMap[this.player._currentY][this.player._currentX] == 152)
       {
         
-        whatMap[this.player._currentY][this.player._currentX] = 0
+        whatMap[this.player._currentY][this.player._currentX] = 1
 
         this.player.findIndex()
 
@@ -172,20 +180,7 @@ const game = {
         document.getElementById('trap').play()          
       }  
   },
-
-  getPoisoned(whatMap) {
-    if (whatMap[this.player._currentY][this.player._currentX] == 152) {
-
-      this.ctx.font = "20px Artifika";
-      this.ctx.fillStyle = "red";
-      this.ctx.fillText('You get poisoned!!', 70, 100)
-      document.getElementById('trap').play()
-      setTimeout(() => {
-        whatMap[this.player._currentY][this.player._currentX] = 153
-      }, 1000); 
-    } 
-  },
-  
+ 
 
   checkLevel () {
     if ((this.map[this.player._currentY][this.player._currentX] == 113 || this.map[this.player._currentY][this.player._currentX] == 129) && this.levelCounter === 1) 
